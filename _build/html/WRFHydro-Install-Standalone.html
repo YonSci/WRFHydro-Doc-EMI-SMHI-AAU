@@ -1,0 +1,1124 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. WRF-Hydro Standalone Installation &mdash; WRFHydro Documentation EMI-SMHI-AAU 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. WRF Installation" href="WRF-Install.html" />
+    <link rel="prev" title="WRF-Hydro Model Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            WRFHydro Documentation EMI-SMHI-AAU
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. WRF-Hydro Standalone Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#line-by-line-explanation">1.2. Line-by-Line Explanation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#script-header">1.2.1. Script Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-base-directories">1.2.2. Setting Base Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-directory-structure">1.2.3. Creating Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-prerequisite-libraries">1.2.4. Downloading Prerequisite Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-compilers">1.2.5. Setting Compilers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-compiler-versions">1.2.6. Checking Compiler Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-compiler-flags-based-on-version">1.2.7. Setting Compiler Flags Based on Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-zlib">1.2.8. Installing zlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-libpng">1.2.9. Installing libpng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-jasper">1.2.10. Installing Jasper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-mpich">1.2.11. Installing MPICH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-szip">1.2.12. Installing Szip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-hdf5">1.2.13. Installing HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-netcdf-c">1.2.14. Installing netCDF-C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-netcdf-fortran">1.2.15. Installing netCDF-Fortran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-paths-to-bashrc">1.2.16. Exporting Paths to .bashrc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-and-configure-wrf-hydro">1.2.17. Download and Configure WRF-Hydro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compile-wrf-hydro">1.2.18. Compile WRF-Hydro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-compiled-files-to-run-directory">1.2.19. Copy Compiled Files to Run Directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-and-extract-test-case">1.2.20. Download and Extract Test Case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-test-case-files-to-run-directory">1.2.21. Copy Test Case Files to Run Directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-copied-files">1.2.22. Verify Copied Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigate-to-run-directory">1.2.23. Navigate to Run Directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-wrf-hydro">1.2.24. Run WRF-Hydro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-output">1.2.25. Verify Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-full-script">1.3. The Full Script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="WRF-Install.html">2. WRF Installation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">WRFHydro Documentation EMI-SMHI-AAU</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>WRF-Hydro Standalone Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/WRFHydro-Install-Standalone.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wrf-hydro-standalone-installation">
+<h1><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">1. </span>WRF-Hydro Standalone Installation</a><a class="headerlink" href="#wrf-hydro-standalone-installation" title="Link to this heading"></a></h1>
+<nav class="contents" id="on-this-page">
+<p class="topic-title">On This Page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#wrf-hydro-standalone-installation" id="id2">WRF-Hydro Standalone Installation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#line-by-line-explanation" id="id4">Line-by-Line Explanation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#script-header" id="id5">Script Header</a></p></li>
+<li><p><a class="reference internal" href="#setting-base-directories" id="id6">Setting Base Directories</a></p></li>
+<li><p><a class="reference internal" href="#creating-directory-structure" id="id7">Creating Directory Structure</a></p></li>
+<li><p><a class="reference internal" href="#downloading-prerequisite-libraries" id="id8">Downloading Prerequisite Libraries</a></p></li>
+<li><p><a class="reference internal" href="#setting-compilers" id="id9">Setting Compilers</a></p></li>
+<li><p><a class="reference internal" href="#checking-compiler-versions" id="id10">Checking Compiler Versions</a></p></li>
+<li><p><a class="reference internal" href="#setting-compiler-flags-based-on-version" id="id11">Setting Compiler Flags Based on Version</a></p></li>
+<li><p><a class="reference internal" href="#installing-zlib" id="id12">Installing zlib</a></p></li>
+<li><p><a class="reference internal" href="#installing-libpng" id="id13">Installing libpng</a></p></li>
+<li><p><a class="reference internal" href="#installing-jasper" id="id14">Installing Jasper</a></p></li>
+<li><p><a class="reference internal" href="#installing-mpich" id="id15">Installing MPICH</a></p></li>
+<li><p><a class="reference internal" href="#installing-szip" id="id16">Installing Szip</a></p></li>
+<li><p><a class="reference internal" href="#installing-hdf5" id="id17">Installing HDF5</a></p></li>
+<li><p><a class="reference internal" href="#installing-netcdf-c" id="id18">Installing netCDF-C</a></p></li>
+<li><p><a class="reference internal" href="#installing-netcdf-fortran" id="id19">Installing netCDF-Fortran</a></p></li>
+<li><p><a class="reference internal" href="#exporting-paths-to-bashrc" id="id20">Exporting Paths to .bashrc</a></p></li>
+<li><p><a class="reference internal" href="#download-and-configure-wrf-hydro" id="id21">Download and Configure WRF-Hydro</a></p></li>
+<li><p><a class="reference internal" href="#compile-wrf-hydro" id="id22">Compile WRF-Hydro</a></p></li>
+<li><p><a class="reference internal" href="#copy-compiled-files-to-run-directory" id="id23">Copy Compiled Files to Run Directory</a></p></li>
+<li><p><a class="reference internal" href="#download-and-extract-test-case" id="id24">Download and Extract Test Case</a></p></li>
+<li><p><a class="reference internal" href="#copy-test-case-files-to-run-directory" id="id25">Copy Test Case Files to Run Directory</a></p></li>
+<li><p><a class="reference internal" href="#verify-copied-files" id="id26">Verify Copied Files</a></p></li>
+<li><p><a class="reference internal" href="#navigate-to-run-directory" id="id27">Navigate to Run Directory</a></p></li>
+<li><p><a class="reference internal" href="#run-wrf-hydro" id="id28">Run WRF-Hydro</a></p></li>
+<li><p><a class="reference internal" href="#verify-output" id="id29">Verify Output</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#the-full-script" id="id30">The Full Script</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<div style="text-align: justify;">
+<p> This document provides a detailed explanation of a bash script designed to download, compile, and install the WRF-Hydro model (version 5.2.0) in standalone mode, along with its necessary prerequisite libraries (like NetCDF, HDF5, MPICH, etc.). It also covers setting up and running a sample test case (Croton_NY). </p>
+</div></section>
+<section id="line-by-line-explanation">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.2. </span>Line-by-Line Explanation</a><a class="headerlink" href="#line-by-line-explanation" title="Link to this heading"></a></h2>
+<p>This section breaks down the script command by command.</p>
+<section id="script-header">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.2.1. </span>Script Header</a><a class="headerlink" href="#script-header" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code></dt><dd><p><cite>Shebang line</cite>. Specifies that the script should be executed with bash (Bourne-Again SHell).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="setting-base-directories">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.2.2. </span>Setting Base Directories</a><a class="headerlink" href="#setting-base-directories" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set base directory</span>
+<span class="nv">BASE_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/WRFHYDRO_UNCOUPLED
+<span class="nv">INSTALL_DIR</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/libs<span class="w">   </span><span class="c1"># library installation directory</span>
+<span class="nv">DOWNLOAD_DIR</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/Downloads<span class="w">  </span><span class="c1"># library download directory</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">BASE_DIR=$HOME/WRFHYDRO_UNCOUPLED</span></code></dt><dd><p>Defines a variable <code class="docutils literal notranslate"><span class="pre">BASE_DIR</span></code> pointing to a directory named <code class="docutils literal notranslate"><span class="pre">WRFHYDRO_UNCOUPLED</span></code> within the user’s home directory (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>). This will be the root for all downloads and installations.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">INSTALL_DIR=$BASE_DIR/libs</span></code></dt><dd><p>Defines <code class="docutils literal notranslate"><span class="pre">INSTALL_DIR</span></code> where the compiled libraries will be installed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">DOWNLOAD_DIR=$BASE_DIR/Downloads</span></code></dt><dd><p>Defines <code class="docutils literal notranslate"><span class="pre">DOWNLOAD_DIR</span></code> where the source code archives will be downloaded.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="creating-directory-structure">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.2.3. </span>Creating Directory Structure</a><a class="headerlink" href="#creating-directory-structure" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Directory Structure</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating directory structure...&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/NETCDF
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/grib2
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/MPICH
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$BASE_DIR</span>
+<span class="c1"># tree -d -L 2 # Optional visualization</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Creating...&quot;</span></code></dt><dd><p>Prints a status message to the terminal.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">...</span></code></dt><dd><p>Creates the specified directories. The <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag ensures that parent directories are created if they don’t exist. Specific subdirectories for NetCDF, grib2-related libraries (like HDF5, zlib), and MPICH are created within the installation directory. The download directory is also created.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$BASE_DIR</span></code></dt><dd><p>Changes the current working directory to the base directory for further operations.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">tree</span> <span class="pre">-d</span> <span class="pre">-L</span> <span class="pre">2</span></code></dt><dd><p>A commented-out command. If uncommented and the <code class="docutils literal notranslate"><span class="pre">tree</span></code> command is installed, it would display the created directory structure up to 2 levels deep.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="downloading-prerequisite-libraries">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.2.4. </span>Downloading Prerequisite Libraries</a><a class="headerlink" href="#downloading-prerequisite-libraries" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download Libraries</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Downloading libraries...&quot;</span>
+
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+
+<span class="c1"># Download zlib Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/madler/zlib/archive/refs/tags/v1.2.12.tar.gz
+
+<span class="c1"># Download HDF Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+
+<span class="c1"># Download netCDF-C Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.0.tar.gz
+
+<span class="c1"># Download netCDF-Fortran Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.0.tar.gz
+
+<span class="c1"># Download MPICH Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/pmodels/mpich/releases/download/v4.0.2/mpich-4.0.2.tar.gz
+
+<span class="c1"># Download libpng Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz
+
+<span class="c1"># Download jasper Library</span>
+wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+
+<span class="c1"># Download szip Library (Placeholder - see note in full script)</span>
+<span class="c1"># wget -c -4 [URL_TO_SZIP_TARBALL]</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Downloading...&quot;</span></code></dt><dd><p>Prints a status message.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code></dt><dd><p>Changes the current directory to where downloads should be stored.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-c</span> <span class="pre">-4</span> <span class="pre">[URL]</span></code>:  Downloads files from the specified URLs.
+*   <code class="docutils literal notranslate"><span class="pre">wget</span></code>: A command-line utility to retrieve files from the web.
+*   <code class="docutils literal notranslate"><span class="pre">-c</span></code>: Continue getting a partially downloaded file.
+*   <code class="docutils literal notranslate"><span class="pre">-4</span></code>: Force resolving hostnames to IPv4 addresses only.</p></li>
+<li><p>The script downloads source code archives for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>zlib (compression library),</p></li>
+<li><p>HDF5 (data format),</p></li>
+<li><p>NetCDF-C (data format C library),</p></li>
+<li><p>NetCDF-Fortran (Fortran interface),</p></li>
+<li><p>MPICH (MPI implementation),</p></li>
+<li><p>libpng (PNG image format),</p></li>
+<li><p>Jasper (JPEG-2000 format), and</p></li>
+<li><p>Szip (another compression library often used with HDF5).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="setting-compilers">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.2.5. </span>Setting Compilers</a><a class="headerlink" href="#setting-compilers" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting Compilers</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting compilers...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span>gcc
+<span class="nb">export</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>g++
+<span class="nb">export</span><span class="w"> </span><span class="nv">FC</span><span class="o">=</span>gfortran
+<span class="nb">export</span><span class="w"> </span><span class="nv">F77</span><span class="o">=</span>gfortran
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Setting</span> <span class="pre">compilers...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CC=gcc</span></code>: Sets the environment variable <code class="docutils literal notranslate"><span class="pre">CC</span></code> (C compiler) to <code class="docutils literal notranslate"><span class="pre">gcc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CXX=g++</span></code>: Sets the environment variable <code class="docutils literal notranslate"><span class="pre">CXX</span></code> (C++ compiler) to <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">FC=gfortran</span></code>: Sets the environment variable <code class="docutils literal notranslate"><span class="pre">FC</span></code> (Fortran compiler, typically Fortran 90+) to <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">F77=gfortran</span></code>: Sets the environment variable <code class="docutils literal notranslate"><span class="pre">F77</span></code> (Fortran 77 compiler) to <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> . These environment variables are commonly used by build systems (like <code class="docutils literal notranslate"><span class="pre">configure</span></code> scripts) to determine which compilers to use.</p></li>
+</ul>
+</section>
+<section id="checking-compiler-versions">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.2.6. </span>Checking Compiler Versions</a><a class="headerlink" href="#checking-compiler-versions" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print Compiler Versions</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Checking compiler versions...&quot;</span>
+<span class="nv">gcc_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>gcc<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">gfortran_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>gfortran<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">gplusplus_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>g++<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;GCC: </span><span class="nv">$gcc_version</span><span class="s2">, GFortran: </span><span class="nv">$gfortran_version</span><span class="s2">, G++: </span><span class="nv">$gplusplus_version</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Checking...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc_version=&quot;$(gcc</span> <span class="pre">-dumpversion)&quot;</span></code>: Executes <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-dumpversion</span></code> (which prints the compiler version) and captures its output into the bash variable <code class="docutils literal notranslate"><span class="pre">gcc_version</span></code>. Similar commands capture versions for <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and <code class="docutils literal notranslate"><span class="pre">g++</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;GCC:</span> <span class="pre">...&quot;</span></code>: Prints the detected compiler versions to the terminal.</p></li>
+</ul>
+</section>
+<section id="setting-compiler-flags-based-on-version">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.2.7. </span>Setting Compiler Flags Based on Version</a><a class="headerlink" href="#setting-compiler-flags-based-on-version" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set Compiler Flags based on version</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting compiler flags...&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">version_10</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$gcc_version</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$gcc_version</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d.<span class="w"> </span>-f1<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$version_10</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$gfortran_version</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$gfortran_version</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d.<span class="w"> </span>-f1<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$version_10</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$gplusplus_version</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$gplusplus_version</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d.<span class="w"> </span>-f1<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$version_10</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="k">then</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">fallow_argument</span><span class="o">=</span><span class="s2">&quot;-fallow-argument-mismatch&quot;</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">boz_argument</span><span class="o">=</span><span class="s2">&quot;-fallow-invalid-boz&quot;</span><span class="w"> </span><span class="c1"># Note usage</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">fallow_argument</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">boz_argument</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">FFLAGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$fallow_argument</span><span class="s2"> </span><span class="nv">$boz_argument</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FCFLAGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$fallow_argument</span><span class="s2"> </span><span class="nv">$boz_argument</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Setting</span> <span class="pre">flags...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">version_10=&quot;10&quot;</span></code>: Sets a variable for version 10.</p></li>
+<li><dl class="simple">
+<dt>The <code class="docutils literal notranslate"><span class="pre">if</span></code> condition checks if any compiler version is 10 or higher:</dt><dd><ul>
+<li><p>If true, sets <code class="docutils literal notranslate"><span class="pre">fallow_argument</span></code> to <code class="docutils literal notranslate"><span class="pre">-fallow-argument-mismatch</span></code> and <code class="docutils literal notranslate"><span class="pre">boz_argument</span></code> to <code class="docutils literal notranslate"><span class="pre">-fallow-invalid-boz</span></code> (for compatibility).</p></li>
+<li><p>If false, sets both to empty strings.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">FFLAGS=&quot;$fallow_argument&quot;</span></code>: Sets Fortran flags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">FCFLAGS=&quot;$fallow_argument&quot;</span></code>: Sets Fortran compiler flags.</p></li>
+</ul>
+</section>
+<section id="installing-zlib">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">1.2.8. </span>Installing zlib</a><a class="headerlink" href="#installing-zlib" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install zlib</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing zlib...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>v1.2.12.tar.gz
+<span class="nb">cd</span><span class="w"> </span>zlib-1.2.12/
+<span class="nv">DIR</span><span class="o">=</span><span class="nv">$INSTALL_DIR</span>
+<span class="nv">CC</span><span class="o">=</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+make
+make<span class="w"> </span>install
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">zlib...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">v1.2.12.tar.gz</span></code>: Extracts the zlib archive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">zlib-1.2.12/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DIR=$INSTALL_DIR</span></code>: Sets a variable for the install directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CC=</span> <span class="pre">CXX=</span> <span class="pre">./configure</span> <span class="pre">--prefix=$DIR/grib2</span></code>: Configures zlib with an empty compiler setting (likely a mistake; compilers are set earlier) and installs to <code class="docutils literal notranslate"><span class="pre">$DIR/grib2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles zlib.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs zlib.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-libpng">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">1.2.9. </span>Installing libpng</a><a class="headerlink" href="#installing-libpng" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install libpng</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing libpng...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/grib2/lib
+<span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/grib2/includeS
+tar<span class="w"> </span>-xvzf<span class="w"> </span>libpng-1.6.37.tar.gz
+<span class="nb">cd</span><span class="w"> </span>libpng-1.6.37/
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+make
+make<span class="w"> </span>install
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">libpng...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LDFLAGS=-L$DIR/grib2/lib</span></code>: Sets linker flags to include zlib’s library path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CPPFLAGS=-I$DIR/grib2/includeS</span></code>: Sets preprocessor flags; <code class="docutils literal notranslate"><span class="pre">includeS</span></code> is a typo (should be <code class="docutils literal notranslate"><span class="pre">include</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">libpng-1.6.37.tar.gz</span></code>: Extracts libpng.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">libpng-1.6.37/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$DIR/grib2</span></code>: Configures libpng to install in <code class="docutils literal notranslate"><span class="pre">$DIR/grib2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles libpng.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs libpng.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-jasper">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">1.2.10. </span>Installing Jasper</a><a class="headerlink" href="#installing-jasper" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Jasper</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing Jasper...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+unzip<span class="w"> </span>jasper-1.900.1.zip
+<span class="nb">cd</span><span class="w"> </span>jasper-1.900.1/
+autoreconf<span class="w"> </span>-i
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+make
+make<span class="w"> </span>install
+<span class="nb">export</span><span class="w"> </span><span class="nv">JASPERLIB</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/lib
+<span class="nb">export</span><span class="w"> </span><span class="nv">JASPERINC</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/include
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation</strong></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">Jasper...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unzip</span> <span class="pre">jasper-1.900.1.zip</span></code>: Extracts the Jasper zip file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">jasper-1.900.1/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoreconf</span> <span class="pre">-i</span></code>: Generates the configure script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$DIR/grib2</span></code>: Configures Jasper to install in <code class="docutils literal notranslate"><span class="pre">$DIR/grib2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles Jasper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs Jasper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">JASPERLIB=$DIR/grib2/lib</span></code>: Sets the Jasper library path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">JASPERINC=$DIR/grib2/include</span></code>: Sets the Jasper include path.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="installing-mpich">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">1.2.11. </span>Installing MPICH</a><a class="headerlink" href="#installing-mpich" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install MPICH</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing MPICH...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>mpich-4.0.2.tar.gz
+<span class="nb">cd</span><span class="w"> </span>mpich-4.0.2/
+<span class="nv">F90</span><span class="o">=</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/MPICH<span class="w"> </span>--with-device<span class="o">=</span>ch3<span class="w"> </span><span class="nv">FFLAGS</span><span class="o">=</span><span class="nv">$fallow_argument</span><span class="w"> </span><span class="nv">FCFLAGS</span><span class="o">=</span><span class="nv">$fallow_argument</span>
+make
+make<span class="w"> </span>install
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$DIR</span>/MPICH/bin:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">MPICH...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">mpich-4.0.2.tar.gz</span></code>: Extracts MPICH.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">mpich-4.0.2/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F90=</span> <span class="pre">./configure</span> <span class="pre">--prefix=$DIR/MPICH</span> <span class="pre">--with-device=ch3</span> <span class="pre">FFLAGS=$fallow_argument</span> <span class="pre">FCFLAGS=$fallow_argument</span></code>: Configures MPICH with no F90 compiler specified, installs to <code class="docutils literal notranslate"><span class="pre">$DIR/MPICH</span></code>, uses the <code class="docutils literal notranslate"><span class="pre">ch3</span></code> device, and applies compiler flags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles MPICH.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs MPICH.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=$DIR/MPICH/bin:$PATH</span></code>: Adds MPICH’s bin directory to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-szip">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">1.2.12. </span>Installing Szip</a><a class="headerlink" href="#installing-szip" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install szip</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing Szip&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>szip-2.1.tar.gz
+<span class="nb">cd</span><span class="w"> </span>szip-2.1
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/WRF/libs/szip
+make<span class="w">   </span><span class="c1"># compile the code</span>
+make<span class="w"> </span>install<span class="w"> </span><span class="c1"># installl szip</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">Szip&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">szip-2.1.tar.gz</span></code>: Extracts Szip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">szip-2.1</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$HOME/WRF/libs/szip</span></code>: Configures Szip to install in <code class="docutils literal notranslate"><span class="pre">$HOME/WRF/libs/szip</span></code> (note the different path).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles Szip.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs Szip (comment has a typo: “installl”).</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-hdf5">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">1.2.13. </span>Installing HDF5</a><a class="headerlink" href="#installing-hdf5" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install HDF5</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing HDF5...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>hdf5-1_12_2.tar.gz
+<span class="nb">cd</span><span class="w"> </span>hdf5-hdf5-1_12_2
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2<span class="w"> </span>--with-zlib<span class="o">=</span><span class="nv">$DIR</span>/grib2<span class="w"> </span>--enable-hl<span class="w"> </span>--enable-fortran
+make
+make<span class="w"> </span>install
+<span class="nb">export</span><span class="w"> </span><span class="nv">HDF5</span><span class="o">=</span><span class="nv">$DIR</span>/grib2
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">HDF5...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">hdf5-1_12_2.tar.gz</span></code>: Extracts HDF5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">hdf5-hdf5-1_12_2</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$DIR/grib2</span> <span class="pre">--with-zlib=$DIR/grib2</span> <span class="pre">--enable-hl</span> <span class="pre">--enable-fortran</span></code>: Configures HDF5 with zlib support, high-level API, and Fortran support, installing to <code class="docutils literal notranslate"><span class="pre">$DIR/grib2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles HDF5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs HDF5.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">HDF5=$DIR/grib2</span></code>: Sets the HDF5 environment variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LD_LIBRARY_PATH=$DIR/grib2/lib:$LD_LIBRARY_PATH</span></code>: Adds HDF5’s library path to <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-netcdf-c">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">1.2.14. </span>Installing netCDF-C</a><a class="headerlink" href="#installing-netcdf-c" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install netCDF-C</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing netCDF-C...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/grib2/include
+<span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/grib2/lib
+tar<span class="w"> </span>-xzvf<span class="w"> </span>v4.9.0.tar.gz
+<span class="nb">cd</span><span class="w"> </span>netcdf-c-4.9.0/
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/NETCDF<span class="w"> </span>--disable-dap
+make
+make<span class="w"> </span>install
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">NETCDF</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">netCDF-C...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CPPFLAGS=-I$DIR/grib2/include</span></code>: Sets include path for grib2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LDFLAGS=-L$DIR/grib2/lib</span></code>: Sets library path for grib2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xzvf</span> <span class="pre">v4.9.0.tar.gz</span></code>: Extracts netCDF-C.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">netcdf-c-4.9.0/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$DIR/NETCDF</span> <span class="pre">--disable-dap</span></code>: Configures netCDF-C to install in <code class="docutils literal notranslate"><span class="pre">$DIR/NETCDF</span></code> and disables DAP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles netCDF-C.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs netCDF-C.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=$DIR/NETCDF/bin:$PATH</span></code>: Adds netCDF-C’s bin directory to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">NETCDF=$DIR/NETCDF</span></code>: Sets the NETCDF environment variable.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installing-netcdf-fortran">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">1.2.15. </span>Installing netCDF-Fortran</a><a class="headerlink" href="#installing-netcdf-fortran" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install netCDF-Fortran</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing netCDF-Fortran...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>v4.6.0.tar.gz
+<span class="nb">cd</span><span class="w"> </span>netcdf-fortran-4.6.0/
+<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/NETCDF/include
+<span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/NETCDF/lib
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/NETCDF<span class="w"> </span>--disable-shared
+make
+make<span class="w"> </span>install
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Installing</span> <span class="pre">netCDF-Fortran...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">v4.6.0.tar.gz</span></code>: Extracts netCDF-Fortran.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">netcdf-fortran-4.6.0/</span></code>: Enters the extracted directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LD_LIBRARY_PATH=$DIR/NETCDF/lib:$LD_LIBRARY_PATH</span></code>: Adds netCDF library path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">CPPFLAGS=-I$DIR/NETCDF/include</span></code>: Sets netCDF include path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">LDFLAGS=-L$DIR/NETCDF/lib</span></code>: Sets netCDF library path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--prefix=$DIR/NETCDF</span> <span class="pre">--disable-shared</span></code>: Configures netCDF-Fortran to install in <code class="docutils literal notranslate"><span class="pre">$DIR/NETCDF</span></code> without shared libraries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: Compiles netCDF-Fortran.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code>: Installs netCDF-Fortran.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="exporting-paths-to-bashrc">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">1.2.16. </span>Exporting Paths to .bashrc</a><a class="headerlink" href="#exporting-paths-to-bashrc" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Appending PATH to .bashrc</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Exporting necessary paths to .bashrc...&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/MPICH/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export LD_LIBRARY_PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF/lib:\$LD_LIBRARY_PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export HDF5=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/grib2&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export LD_LIBRARY_PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/grib2/lib:\$LD_LIBRARY_PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export NETCDF=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Exporting</span> <span class="pre">necessary</span> <span class="pre">paths</span> <span class="pre">to</span> <span class="pre">.bashrc...&quot;</span></code>: Prints a status message.</p></li>
+<li><dl class="simple">
+<dt>Each <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;export</span> <span class="pre">...&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">$HOME/.bashrc</span></code> appends an export command to <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>:</dt><dd><ul>
+<li><p>Adds MPICH and NETCDF bin directories to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p></li>
+<li><p>Adds NETCDF and grib2 library paths to <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>.</p></li>
+<li><p>Sets <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> and <code class="docutils literal notranslate"><span class="pre">NETCDF</span></code> environment variables.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">$HOME/.bashrc</span></code>: Applies these changes to the current session.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="download-and-configure-wrf-hydro">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">1.2.17. </span>Download and Configure WRF-Hydro</a><a class="headerlink" href="#download-and-configure-wrf-hydro" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download and Configure WRF-Hydro</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting up WRF-Hydro...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+wget<span class="w"> </span>-c<span class="w"> </span>https://github.com/NCAR/wrf_hydro_nwm_public/archive/refs/tags/v5.2.0.tar.gz<span class="w"> </span>-O<span class="w"> </span>WRFHYDRO.5.2.tar.gz
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/domain/NWM
+tar<span class="w"> </span>-xvzf<span class="w"> </span>WRFHYDRO.5.2.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel
+
+<span class="c1"># Configure WRF-Hydro Environment Settings</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS/template
+cp<span class="w"> </span>setEnvar.sh<span class="w"> </span>setEnvar.sh.orig
+sed<span class="w"> </span><span class="s1">&#39;s/SPATIAL_SOIL=0/SPATIAL_SOIL=1/&#39;</span><span class="w"> </span>setEnvar.sh.orig<span class="w"> </span>&gt;<span class="w"> </span>setEnvar.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# Large netcdf file support: 0=Off, 1=On.&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export WRFIO_NCD_LARGE_FILE_SUPPORT=1&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+ln<span class="w"> </span>-sf<span class="w"> </span><span class="nv">$PWD</span>/setEnvar.sh<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS/setEnvar.sh
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Setting</span> <span class="pre">up...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Navigates to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">...</span> <span class="pre">-O</span> <span class="pre">WRFHYDRO.5.2.tar.gz</span></code>: Downloads the WRF-Hydro v5.2.0 source code, saving it with a specific filename <code class="docutils literal notranslate"><span class="pre">WRFHYDRO.5.2.tar.gz</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">$HOME/WRFhydromodel/domain/NWM</span></code>: Creates the directory structure where the model will eventually be run (the domain/test case directory).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">...</span> <span class="pre">-C</span> <span class="pre">$HOME/WRFhydromodel</span></code>: Extracts the WRF-Hydro source code into the <code class="docutils literal notranslate"><span class="pre">$HOME/WRFhydromodel</span></code> directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.../template</span></code>: Navigates into the template directory within the WRF-Hydro source.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">setEnvar.sh</span> <span class="pre">setEnvar.sh.orig</span></code>: Creates a backup of the original environment settings file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'s/...'</span> <span class="pre">...</span> <span class="pre">&gt;</span> <span class="pre">setEnvar.sh</span></code>: Modifies the environment settings file (<code class="docutils literal notranslate"><span class="pre">setEnvar.sh</span></code>). This specific command enables the <code class="docutils literal notranslate"><span class="pre">SPATIAL_SOIL</span></code> option by changing its value from 0 to 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">...</span> <span class="pre">&gt;&gt;</span> <span class="pre">setEnvar.sh</span></code>: Appends lines to the <code class="docutils literal notranslate"><span class="pre">setEnvar.sh</span></code> file to add a comment and enable large NetCDF file support via the <code class="docutils literal notranslate"><span class="pre">WRFIO_NCD_LARGE_FILE_SUPPORT</span></code> environment variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">...</span></code>: Creates a symbolic link from the modified <code class="docutils literal notranslate"><span class="pre">setEnvar.sh</span></code> in the template directory to the main compilation directory (<code class="docutils literal notranslate"><span class="pre">.../trunk/NDHMS</span></code>), ensuring the compile script uses the modified settings.</p></li>
+</ul>
+</section>
+<section id="compile-wrf-hydro">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">1.2.18. </span>Compile WRF-Hydro</a><a class="headerlink" href="#compile-wrf-hydro" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compile WRF-Hydro</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Compiling WRF-Hydro...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS
+./configure<span class="w"> </span><span class="c1"># Option 2</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;WRF-Hydro configure failed!&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+./compile_offline_NoahMP.sh<span class="w"> </span>setEnvar.sh
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;WRF-Hydro compile failed!&quot;</span><span class="p">;</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Compiling...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.../NDHMS</span></code>: Navigates to the main WRF-Hydro source/compile directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./configure</span></code>: Runs the WRF-Hydro configure script. This script typically prompts the user to select compilation options (like compiler choice, nesting options). The comment <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Option</span> <span class="pre">2</span></code> suggests the user should manually select option 2 when prompted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">[</span> <span class="pre">$?</span> <span class="pre">-ne</span> <span class="pre">0</span> <span class="pre">];</span> <span class="pre">then</span> <span class="pre">...</span> <span class="pre">fi</span></code>: Basic error checking. If the previous command (<code class="docutils literal notranslate"><span class="pre">./configure</span></code>) exited with a non-zero status (indicating an error), it prints an error message and exits the script.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./compile_offline_NoahMP.sh</span> <span class="pre">setEnvar.sh</span></code>: Executes the specific compilation script for the standalone (“offline”) NoahMP configuration, passing the (modified) <code class="docutils literal notranslate"><span class="pre">setEnvar.sh</span></code> file to provide necessary environment settings (like library paths) to the build system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">[</span> <span class="pre">$?</span> <span class="pre">-ne</span> <span class="pre">0</span> <span class="pre">];</span> <span class="pre">then</span> <span class="pre">...</span> <span class="pre">fi</span></code>: Checks for errors after the compilation step.</p></li>
+</ul>
+</section>
+<section id="copy-compiled-files-to-run-directory">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">1.2.19. </span>Copy Compiled Files to Run Directory</a><a class="headerlink" href="#copy-compiled-files-to-run-directory" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy .TBL and Executables to Run Directory</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Copying .TBL and executables...&quot;</span>
+<span class="nv">DEST_RUN_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/WRFhydromodel/domain/NWM&quot;</span>
+cp<span class="w"> </span>Run/*.TBL<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>
+cp<span class="w"> </span>Run/wrf_hydro.exe<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Copying...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEST_RUN_DIR=&quot;...&quot;</span></code>: Defines the destination run directory variable again for clarity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">Run/*.TBL</span> <span class="pre">$DEST_RUN_DIR</span></code>: Copies all files ending with <code class="docutils literal notranslate"><span class="pre">.TBL</span></code> (table files containing parameterizations or settings) from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> subdirectory (within the compile directory) to the designated run directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">Run/wrf_hydro.exe</span> <span class="pre">$DEST_RUN_DIR</span></code>: Copies the compiled WRF-Hydro executable (<code class="docutils literal notranslate"><span class="pre">wrf_hydro.exe</span></code>) from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> subdirectory to the run directory.</p></li>
+</ul>
+</section>
+<section id="download-and-extract-test-case">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">1.2.20. </span>Download and Extract Test Case</a><a class="headerlink" href="#download-and-extract-test-case" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download Croton_NY Test Case</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Downloading Croton_NY Test Case...&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+wget<span class="w"> </span>-c<span class="w"> </span>https://github.com/NCAR/wrf_hydro_nwm_public/releases/download/v5.2.0/croton_NY_training_example_v5.2.tar.gz
+
+<span class="c1"># Extracting the tar.gz file</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Extracting Croton_NY Test Case...&quot;</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>croton_NY_training_example_v5.2.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Downloading...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Changes to the download directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">...</span></code>: Downloads the Croton_NY test case archive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Extracting...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xvzf</span> <span class="pre">...</span> <span class="pre">-C</span> <span class="pre">$DOWNLOAD_DIR</span></code>: Extracts the test case archive into the download directory. It will likely create a subdirectory like <code class="docutils literal notranslate"><span class="pre">example_case</span></code>.</p></li>
+</ul>
+</section>
+<section id="copy-test-case-files-to-run-directory">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">1.2.21. </span>Copy Test Case Files to Run Directory</a><a class="headerlink" href="#copy-test-case-files-to-run-directory" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defining the source and destination paths for training examples</span>
+<span class="nv">SOURCE_CASE_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$DOWNLOAD_DIR</span><span class="s2">/example_case&quot;</span><span class="w"> </span><span class="c1"># Path after extraction</span>
+<span class="nv">DEST_RUN_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/WRFhydromodel/domain/NWM&quot;</span><span class="w"> </span><span class="c1"># Defined earlier</span>
+
+<span class="c1"># Copying Test Case Files to Run Directory</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Copying Test Case files...&quot;</span>
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/FORCING<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/NWM/DOMAIN<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/NWM/RESTART<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/NWM/nudgingTimeSliceObs<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+<span class="c1"># cp -r $SOURCE_CASE_DIR/NWM/referenceSim $DEST_RUN_DIR # Usually not needed for running</span>
+cp<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/NWM/namelist.hrldas<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+cp<span class="w"> </span><span class="nv">$SOURCE_CASE_DIR</span>/NWM/hydro.namelist<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>/
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SOURCE_CASE_DIR=&quot;...&quot;</span></code>: Defines a variable pointing to the extracted test case directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEST_RUN_DIR=&quot;...&quot;</span></code>: Re-affirms the run directory variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Copying...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span> <span class="pre">...</span> <span class="pre">$DEST_RUN_DIR/</span></code>: Copies the necessary directories (<code class="docutils literal notranslate"><span class="pre">FORCING</span></code>, <code class="docutils literal notranslate"><span class="pre">DOMAIN</span></code>, <code class="docutils literal notranslate"><span class="pre">RESTART</span></code>, <code class="docutils literal notranslate"><span class="pre">nudgingTimeSliceObs</span></code>) recursively (<code class="docutils literal notranslate"><span class="pre">-r</span></code>) from the extracted test case source into the run directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">...</span> <span class="pre">$DEST_RUN_DIR/</span></code>: Copies the required namelist files (<code class="docutils literal notranslate"><span class="pre">namelist.hrldas</span></code>, <code class="docutils literal notranslate"><span class="pre">hydro.namelist</span></code>) into the run directory. These files contain settings and configurations for the specific model run.</p></li>
+</ul>
+</section>
+<section id="verify-copied-files">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">1.2.22. </span>Verify Copied Files</a><a class="headerlink" href="#verify-copied-files" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verifying the copied files and directories</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Verifying contents of run directory:&quot;</span>
+ls<span class="w"> </span>-R<span class="w"> </span><span class="nv">$DEST_RUN_DIR</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="c1"># Show partial listing</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Verifying...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-R</span> <span class="pre">$DEST_RUN_DIR</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">20</span></code>: Lists the contents of the run directory recursively (<code class="docutils literal notranslate"><span class="pre">-R</span></code>) and pipes (<code class="docutils literal notranslate"><span class="pre">|</span></code>) the output to <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">-n</span> <span class="pre">20</span></code>, which displays only the first 20 lines. This gives a quick check that files were copied.</p></li>
+</ul>
+</section>
+<section id="navigate-to-run-directory">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">1.2.23. </span>Navigate to Run Directory</a><a class="headerlink" href="#navigate-to-run-directory" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Navigating to the Run Directory</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Navigating to run directory: </span><span class="nv">$DEST_RUN_DIR</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$DEST_RUN_DIR</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Navigating...&quot;</span></code>: Prints a status message indicating the directory change.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$DEST_RUN_DIR</span></code>: Changes the current working directory to the run directory where the executable and test case files are located.</p></li>
+</ul>
+</section>
+<section id="run-wrf-hydro">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">1.2.24. </span>Run WRF-Hydro</a><a class="headerlink" href="#run-wrf-hydro" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running WRF-Hydro with MPI</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Running WRF-Hydro using mpirun...&quot;</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>./wrf_hydro.exe
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;WRF-Hydro run command failed!&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;WRF-Hydro run command finished.&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+
+<span class="c1"># Optional: Running WRF-Hydro while capturing output/errors</span>
+<span class="c1"># echo &quot;Running WRF-Hydro with logging...&quot;</span>
+<span class="c1"># mpirun -np 2 ./wrf_hydro.exe &gt; wrf_hydro_run.log 2&gt;&amp;1</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Running...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">2</span> <span class="pre">./wrf_hydro.exe</span></code>: Executes the WRF-Hydro model.
+*   <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>: A command (typically provided by an MPI implementation like MPICH or OpenMPI) used to launch parallel applications.
+*   <code class="docutils literal notranslate"><span class="pre">-np</span> <span class="pre">2</span></code>: Specifies the number of processes (cores) to use (in this case, 2).
+*   <code class="docutils literal notranslate"><span class="pre">./wrf_hydro.exe</span></code>: The executable file to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">[</span> <span class="pre">$?</span> <span class="pre">-ne</span> <span class="pre">0</span> <span class="pre">];</span> <span class="pre">then</span> <span class="pre">...</span> <span class="pre">fi</span></code>: Checks the exit status of the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command and prints a success or failure message.</p></li>
+<li><p>The commented-out lines show how to redirect standard output (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>) and standard error (<code class="docutils literal notranslate"><span class="pre">2&gt;&amp;1</span></code>) to a log file (<code class="docutils literal notranslate"><span class="pre">wrf_hydro_run.log</span></code>) for later inspection.</p></li>
+</ul>
+</section>
+<section id="verify-output">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink"><span class="section-number">1.2.25. </span>Verify Output</a><a class="headerlink" href="#verify-output" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verifying the Output</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Checking for output files (HYDRO_RST*)...&quot;</span>
+ls<span class="w"> </span>-lah<span class="w"> </span>HYDRO_RST*
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Script finished.&quot;</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Checking...&quot;</span></code>: Prints a status message.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-lah</span> <span class="pre">HYDRO_RST*</span></code>: Lists files in the current directory (the run directory) that start with <code class="docutils literal notranslate"><span class="pre">HYDRO_RST</span></code>. These are typically the hydrostatic restart output files generated by a successful model run.
+*   <code class="docutils literal notranslate"><span class="pre">-l</span></code>: Long listing format.
+*   <code class="docutils literal notranslate"><span class="pre">-a</span></code>: Show all files (including hidden).
+*   <code class="docutils literal notranslate"><span class="pre">-h</span></code>: Human-readable file sizes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Script</span> <span class="pre">finished.&quot;</span></code>: Prints a final message indicating the script has complete</p></li>
+</ul>
+</section>
+</section>
+<section id="the-full-script">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink"><span class="section-number">1.3. </span>The Full Script</a><a class="headerlink" href="#the-full-script" title="Link to this heading"></a></h2>
+<p>Here is the full Bash script for compiling and running the WRF-Hydro model in standalone mode. It includes downloading and installing prerequisite libraries and setting up a sample test case in a single run.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Full Installation Script</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="ch">#!/bin/bash</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="w"> </span><span class="c1"># WRF-Hydro Model Installation in Standalone Mode</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="w"> </span><span class="c1"># Set base directory</span>
+<span class="linenos">  6</span><span class="w"> </span><span class="nv">BASE_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/WRFHYDRO_UNCOUPLED
+<span class="linenos">  7</span><span class="w"> </span><span class="nv">INSTALL_DIR</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/libs<span class="w">   </span><span class="c1"># library installation directory</span>
+<span class="linenos">  8</span><span class="w"> </span><span class="nv">DOWNLOAD_DIR</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/Downloads<span class="w">  </span><span class="c1"># library download directory</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="w"> </span><span class="c1"># Create Directory Structure</span>
+<span class="linenos"> 11</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Creating directory structure...&quot;</span>
+<span class="linenos"> 12</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/NETCDF
+<span class="linenos"> 13</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/grib2
+<span class="linenos"> 14</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/MPICH
+<span class="linenos"> 15</span><span class="w"> </span>midir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BASE_DIR</span>/libs/MPICH
+<span class="linenos"> 16</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos"> 17</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$BASE_DIR</span>
+<span class="linenos"> 18</span><span class="w"> </span>tree<span class="w"> </span>-d<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="w"> </span><span class="c1"># Download Libraries</span>
+<span class="linenos"> 21</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Downloading libraries...&quot;</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="w"> </span><span class="c1"># Download zlib Library</span>
+<span class="linenos"> 26</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/madler/zlib/archive/refs/tags/v1.2.12.tar.gz
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="w"> </span><span class="c1"># Download HDF Library</span>
+<span class="linenos"> 29</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="w"> </span><span class="c1"># Download netCDF-C Library</span>
+<span class="linenos"> 32</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.0.tar.gz
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="w"> </span><span class="c1"># Download netCDF-Fortran Library</span>
+<span class="linenos"> 35</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.6.0.tar.gz
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="w"> </span><span class="c1"># Download MPICH Library</span>
+<span class="linenos"> 38</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://github.com/pmodels/mpich/releases/download/v4.0.2/mpich-4.0.2.tar.gz
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="w"> </span><span class="c1"># Download libpng Library</span>
+<span class="linenos"> 41</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="w"> </span><span class="c1"># Download jasper Library</span>
+<span class="linenos"> 44</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w"> </span><span class="c1"># Download szip Libarary</span>
+<span class="linenos"> 47</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>-4<span class="w"> </span>https://www.gidhome.com/ftp/pub/gid_adds/binaries/szip-2.1/szip-2.1.tar.gz
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="w"> </span><span class="c1"># Setting Compilers</span>
+<span class="linenos"> 50</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting compilers...&quot;</span>
+<span class="linenos"> 51</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span>gcc
+<span class="linenos"> 52</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>g++
+<span class="linenos"> 53</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">FC</span><span class="o">=</span>gfortran
+<span class="linenos"> 54</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">F77</span><span class="o">=</span>gfortran
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span><span class="w"> </span><span class="c1"># Print Compiler Versions</span>
+<span class="linenos"> 57</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Checking compiler versions...&quot;</span>
+<span class="linenos"> 58</span><span class="w"> </span><span class="nv">gcc_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>gcc<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="linenos"> 59</span><span class="w"> </span><span class="nv">gfortran_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>gfortran<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="linenos"> 60</span><span class="w"> </span><span class="nv">gplusplus_version</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>g++<span class="w"> </span>-dumpversion<span class="k">)</span><span class="s2">&quot;</span>
+<span class="linenos"> 61</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;GCC: </span><span class="nv">$gcc_version</span><span class="s2">, GFortran: </span><span class="nv">$gfortran_version</span><span class="s2">, G++: </span><span class="nv">$gplusplus_version</span><span class="s2">&quot;</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="w"> </span><span class="c1"># Set Compiler Flags based on version</span>
+<span class="linenos"> 64</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting compiler flags...&quot;</span>
+<span class="linenos"> 65</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">version_10</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
+<span class="linenos"> 66</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$gcc_version</span><span class="w"> </span>-ge<span class="w"> </span><span class="nv">$version_10</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$gfortran_version</span><span class="w"> </span>-ge<span class="w"> </span><span class="nv">$version_10</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$gplusplus_version</span><span class="w"> </span>-ge<span class="w"> </span><span class="nv">$version_10</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos"> 67</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos"> 68</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">fallow_argument</span><span class="o">=</span><span class="s2">&quot;-fallow-argument-mismatch&quot;</span>
+<span class="linenos"> 69</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">boz_argument</span><span class="o">=</span><span class="s2">&quot;-fallow-invalid-boz&quot;</span>
+<span class="linenos"> 70</span><span class="w"> </span><span class="k">else</span>
+<span class="linenos"> 71</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">fallow_argument</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="linenos"> 72</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">boz_argument</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="linenos"> 73</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">FFLAGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$fallow_argument</span><span class="s2">&quot;</span>
+<span class="linenos"> 76</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">FCFLAGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$fallow_argument</span><span class="s2">&quot;</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="w"> </span><span class="c1"># Install zlib</span>
+<span class="linenos"> 79</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing zlib...&quot;</span>
+<span class="linenos"> 80</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos"> 81</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>v1.2.12.tar.gz
+<span class="linenos"> 82</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>zlib-1.2.12/
+<span class="linenos"> 83</span><span class="w"> </span><span class="nv">DIR</span><span class="o">=</span><span class="nv">$INSTALL_DIR</span>
+<span class="linenos"> 84</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+<span class="linenos"> 85</span><span class="w"> </span>make
+<span class="linenos"> 86</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="w"> </span><span class="c1"># Install libpng</span>
+<span class="linenos"> 89</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing libpng...&quot;</span>
+<span class="linenos"> 90</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos"> 91</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/grib2/lib
+<span class="linenos"> 92</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/grib2/includeS
+<span class="linenos"> 93</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>libpng-1.6.37.tar.gz
+<span class="linenos"> 94</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>libpng-1.6.37/
+<span class="linenos"> 95</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+<span class="linenos"> 96</span><span class="w"> </span>make
+<span class="linenos"> 97</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="w"> </span><span class="c1"># Install Jasper</span>
+<span class="linenos">100</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing Jasper...&quot;</span>
+<span class="linenos">101</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">102</span><span class="w"> </span>unzip<span class="w"> </span>jasper-1.900.1.zip
+<span class="linenos">103</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>jasper-1.900.1/
+<span class="linenos">104</span><span class="w"> </span>autoreconf<span class="w"> </span>-i
+<span class="linenos">105</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2
+<span class="linenos">106</span><span class="w"> </span>make
+<span class="linenos">107</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">108</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">JASPERLIB</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/lib
+<span class="linenos">109</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">JASPERINC</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/include
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="w"> </span><span class="c1"># Install MPICH</span>
+<span class="linenos">112</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing MPICH...&quot;</span>
+<span class="linenos">113</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">114</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>mpich-4.0.2.tar.gz
+<span class="linenos">115</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>mpich-4.0.2/
+<span class="linenos">116</span><span class="w"> </span><span class="nv">F90</span><span class="o">=</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/MPICH<span class="w"> </span>--with-device<span class="o">=</span>ch3<span class="w"> </span><span class="nv">FFLAGS</span><span class="o">=</span><span class="nv">$fallow_argument</span><span class="w"> </span><span class="nv">FCFLAGS</span><span class="o">=</span><span class="nv">$fallow_argument</span>
+<span class="linenos">117</span><span class="w"> </span>make
+<span class="linenos">118</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">119</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$DIR</span>/MPICH/bin:<span class="nv">$PATH</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w"> </span><span class="c1"># Install szip</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing Szip&quot;</span>
+<span class="linenos">125</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">126</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>szip-2.1.tar.gz
+<span class="linenos">127</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>szip-2.1
+<span class="linenos">128</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/WRF/libs/szip
+<span class="linenos">129</span><span class="w"> </span>make<span class="w">   </span><span class="c1">#compile the code</span>
+<span class="linenos">130</span><span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="c1"># installl szip</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="w"> </span><span class="c1"># Install HDF5</span>
+<span class="linenos">133</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing HDF5...&quot;</span>
+<span class="linenos">134</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">135</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>hdf5-1_12_2.tar.gz
+<span class="linenos">136</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hdf5-hdf5-1_12_2
+<span class="linenos">137</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/grib2<span class="w"> </span>--with-zlib<span class="o">=</span><span class="nv">$DIR</span>/grib2<span class="w"> </span>--enable-hl<span class="w"> </span>--enable-fortran
+<span class="linenos">138</span><span class="w"> </span>make
+<span class="linenos">139</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">140</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">HDF5</span><span class="o">=</span><span class="nv">$DIR</span>/grib2
+<span class="linenos">141</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$DIR</span>/grib2/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span><span class="w"> </span><span class="c1"># Install netCDF-C</span>
+<span class="linenos">144</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing netCDF-C...&quot;</span>
+<span class="linenos">145</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">146</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/grib2/include
+<span class="linenos">147</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/grib2/lib
+<span class="linenos">148</span><span class="w"> </span>tar<span class="w"> </span>-xzvf<span class="w"> </span>v4.9.0.tar.gz
+<span class="linenos">149</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>netcdf-c-4.9.0/
+<span class="linenos">150</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/NETCDF<span class="w"> </span>--disable-dap
+<span class="linenos">151</span><span class="w"> </span>make
+<span class="linenos">152</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">153</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF/bin:<span class="nv">$PATH</span>
+<span class="linenos">154</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">NETCDF</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF
+<span class="linenos">155</span>
+<span class="linenos">156</span><span class="w"> </span><span class="c1"># Install netCDF-Fortran</span>
+<span class="linenos">157</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installing netCDF-Fortran...&quot;</span>
+<span class="linenos">158</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">159</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>v4.6.0.tar.gz
+<span class="linenos">160</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>netcdf-fortran-4.6.0/
+<span class="linenos">161</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$DIR</span>/NETCDF/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="linenos">162</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I<span class="nv">$DIR</span>/NETCDF/include
+<span class="linenos">163</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L<span class="nv">$DIR</span>/NETCDF/lib
+<span class="linenos">164</span><span class="w"> </span>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$DIR</span>/NETCDF<span class="w"> </span>--disable-shared
+<span class="linenos">165</span><span class="w"> </span>make
+<span class="linenos">166</span><span class="w"> </span>make<span class="w"> </span>install
+<span class="linenos">167</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span><span class="w"> </span><span class="c1"># Appending PATH to .bashrc</span>
+<span class="linenos">170</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Exporting necessary paths to .bashrc...&quot;</span>
+<span class="linenos">171</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/MPICH/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">172</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">173</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export LD_LIBRARY_PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF/lib:\$LD_LIBRARY_PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">174</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export HDF5=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/grib2&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">175</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export LD_LIBRARY_PATH=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/grib2/lib:\$LD_LIBRARY_PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">176</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export NETCDF=</span><span class="nv">$INSTALL_DIR</span><span class="s2">/NETCDF&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="w"> </span><span class="c1"># Apply changes to current session</span>
+<span class="linenos">179</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span><span class="nv">$HOME</span>/.bashrc
+<span class="linenos">180</span>
+<span class="linenos">181</span><span class="w"> </span><span class="c1"># Download and Configure WRF-Hydro</span>
+<span class="linenos">182</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Setting up WRF-Hydro...&quot;</span>
+<span class="linenos">183</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">184</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>https://github.com/NCAR/wrf_hydro_nwm_public/archive/refs/tags/v5.2.0.tar.gz<span class="w"> </span>-O<span class="w"> </span>WRFHYDRO.5.2.tar.gz
+<span class="linenos">185</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel
+<span class="linenos">186</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>WRFHYDRO.5.2.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS/template
+<span class="linenos">189</span><span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/SPATIAL_SOIL=0/SPATIAL_SOIL=1/g&#39;</span><span class="w"> </span>setEnvar.sh
+<span class="linenos">190</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+<span class="linenos">191</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# Large netcdf file support: 0=Off, 1=On.&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+<span class="linenos">192</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export WRFIO_NCD_LARGE_FILE_SUPPORT=1&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>setEnvar.sh
+<span class="linenos">193</span><span class="w"> </span>ln<span class="w"> </span>setEnvar.sh<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="w"> </span><span class="c1"># Compile WRF-Hydro</span>
+<span class="linenos">196</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Compiling WRF-Hydro...&quot;</span>
+<span class="linenos">197</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/wrf_hydro_nwm_public-5.2.0/trunk/NDHMS
+<span class="linenos">198</span><span class="w"> </span>./configure<span class="w"> </span><span class="c1"># Option 2</span>
+<span class="linenos">199</span><span class="w"> </span>./compile_offline_NoahMP.sh<span class="w"> </span>setEnvar.sh
+<span class="linenos">200</span>
+<span class="linenos">201</span><span class="w"> </span><span class="c1"># Copy .TBL and Executables</span>
+<span class="linenos">202</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Copying .TBL and executables...&quot;</span>
+<span class="linenos">203</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/domain/NWM
+<span class="linenos">204</span><span class="w"> </span>cp<span class="w"> </span>Run/*.TBL<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/domain/NWM
+<span class="linenos">205</span><span class="w"> </span>cp<span class="w"> </span>Run/wrf_hydro.exe<span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/domain/NWM
+<span class="linenos">206</span>
+<span class="linenos">207</span><span class="w"> </span><span class="c1"># Download Croton_NY Test Case</span>
+<span class="linenos">208</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Downloading Croton_NY Test Case...&quot;</span>
+<span class="linenos">209</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$DOWNLOAD_DIR</span>
+<span class="linenos">210</span><span class="w"> </span>wget<span class="w"> </span>-c<span class="w"> </span>https://github.com/NCAR/wrf_hydro_nwm_public/releases/download/v5.2.0/croton_NY_training_example_v5.2.tar.gz
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="w"> </span><span class="c1"># Extracting the tar.gz file</span>
+<span class="linenos">213</span><span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>croton_NY_training_example_v5.2.tar.gz
+<span class="linenos">214</span>
+<span class="linenos">215</span><span class="w"> </span><span class="c1"># Defining the source and destination paths for training examples</span>
+<span class="linenos">216</span><span class="w"> </span><span class="nv">SOURCE_DIR</span><span class="o">=</span><span class="s2">&quot;example_case/NWM&quot;</span>
+<span class="linenos">217</span><span class="w"> </span><span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/WRFhydromodel/domain/NWM&quot;</span>
+<span class="linenos">218</span>
+<span class="linenos">219</span>
+<span class="linenos">220</span>
+<span class="linenos">221</span><span class="w"> </span><span class="c1"># Copying the FORCING Directory</span>
+<span class="linenos">222</span><span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>example_case/FORCING<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="w"> </span><span class="c1"># Copying the DOMAIN Directory</span>
+<span class="linenos">225</span><span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/DOMAIN<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="w"> </span><span class="c1"># Copying the RESTART Directory</span>
+<span class="linenos">228</span><span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/RESTART<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span><span class="w"> </span><span class="c1"># Copying the nudgingTimeSliceObs Directory</span>
+<span class="linenos">231</span><span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/nudgingTimeSliceObs<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">232</span>
+<span class="linenos">233</span><span class="w"> </span><span class="c1"># Copying the referenceSim Directory</span>
+<span class="linenos">234</span><span class="w"> </span><span class="c1">#cp -r $SOURCE_DIR/referenceSim $DEST_DIR</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span><span class="w"> </span><span class="c1"># Copying the namelist.hrldas File</span>
+<span class="linenos">237</span><span class="w"> </span>cp<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/namelist.hrldas<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">238</span>
+<span class="linenos">239</span><span class="w"> </span><span class="c1"># Copying the hydro.namelist File</span>
+<span class="linenos">240</span><span class="w"> </span>cp<span class="w"> </span><span class="nv">$SOURCE_DIR</span>/hydro.namelist<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">241</span>
+<span class="linenos">242</span><span class="w"> </span><span class="c1"># Verifying the copied files and directories</span>
+<span class="linenos">243</span><span class="w"> </span>ls<span class="w"> </span>-R<span class="w"> </span><span class="nv">$DEST_DIR</span>
+<span class="linenos">244</span>
+<span class="linenos">245</span>
+<span class="linenos">246</span><span class="w"> </span><span class="c1"># Navigating to the NWM Directory</span>
+<span class="linenos">247</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/WRFhydromodel/domain/NWM
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="w"> </span><span class="c1"># Running WRF-Hydro with MPI: run programs in parallel using MPI (Message Passing Interface): This command runs the model in offline mode with Noah-MP based on the compiled executable.</span>
+<span class="linenos">250</span><span class="w"> </span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>./wrf_hydro.exe
+<span class="linenos">251</span>
+<span class="linenos">252</span><span class="w"> </span>Optional:
+<span class="linenos">253</span><span class="w"> </span><span class="c1"># Running WRF-Hydro  while Error Checking</span>
+<span class="linenos">254</span><span class="w"> </span><span class="c1"># mpirun -np 2 ./wrf_hydro.exe &gt; wrf_hydro_run.log 2&gt;&amp;1</span>
+<span class="linenos">255</span>
+<span class="linenos">256</span><span class="w"> </span><span class="c1"># Verifying the Output</span>
+<span class="linenos">257</span><span class="w"> </span>ls<span class="w"> </span>-lah<span class="w"> </span>HYDRO_RST*
+<span class="linenos">258</span>
+<span class="linenos">259</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Script finished.&quot;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="WRF-Hydro Model Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="WRF-Install.html" class="btn btn-neutral float-right" title="2. WRF Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yonas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
