@@ -1,7 +1,7 @@
 WRF Model Installation
 =============================================
 
-This document provides a detailed and indepth explanation of a Bash script designed to install the WRF (Weather Research and Forecasting) model, version 4.6.0, along with its prerequisites. The script supports different configurations `WRF-ARW`, `WRF-Chem`, and `WRF-Hydro`  based on a command-line argument. It automates the installation process, including package management, library compilation, and model configuration, for 64-bit Debian-based operating systems (e.g., Ubuntu, Linux Mint).
+This document provides a detailed and indepth explanation of a Bash script designed to install the `WRF (Weather Research and Forecasting)` model, version 4.6.0, along with its prerequisites. The script supports different configurations `WRF-ARW`, `WRF-Chem`, and `WRF-Hydro`  based on a command-line argument. It automates the installation process, including package management, library compilation, and model configuration, for 64-bit Debian-based operating systems (e.g., Ubuntu, Linux Mint).
 
 .. contents:: Table of Contents
    :depth: 3
