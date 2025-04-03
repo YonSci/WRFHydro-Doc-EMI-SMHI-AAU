@@ -41,25 +41,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="WRFHydro-Install-Standalone.html">1. WRF-Hydro Standalone Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. WRF Model Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">2.1. Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#script-overview">2.2. Script Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#shebang-line">2.3. Shebang Line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-wrf-version-and-type">2.4. Set WRF Version and Type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#system-checks">2.5. System Checks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-necessary-packages">2.6. Installing Necessary Packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-environment-variables">2.7. Set Environment Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#configuring-environment-variables">2.8. Configuring Environment Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-jasper-library">2.9. Installing Jasper Library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-wrf">2.10. Installing WRF</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-wps-wrf-preprocessing-system">2.11. Installing WPS (WRF Preprocessing System)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setting-up-geography-data">2.12. Setting Up Geography Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prep-chem-src-installation">2.13. PREP_CHEM_SRC Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#completion">2.14. Completion</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. WRF Model Installation</a></li>
 </ul>
 
         </div>
@@ -87,35 +72,30 @@
            <div itemprop="articleBody">
              
   <section id="wrf-model-installation">
-<h1><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">2. </span>WRF Model Installation</a><a class="headerlink" href="#wrf-model-installation" title="Link to this heading"></a></h1>
+<h1><span class="section-number">2. </span>WRF Model Installation<a class="headerlink" href="#wrf-model-installation" title="Link to this heading"></a></h1>
 <p>This document provides a detailed and indepth explanation of a Bash script designed to install the <cite>WRF (Weather Research and Forecasting)</cite> model, version 4.6.0, along with its prerequisites. The script supports different configurations <cite>WRF-ARW</cite>, <cite>WRF-Chem</cite>, and <cite>WRF-Hydro</cite>  based on a command-line argument. It automates the installation process, including package management, library compilation, and model configuration, for 64-bit Debian-based operating systems (e.g., Ubuntu, Linux Mint).</p>
-<nav class="contents" id="table-of-contents">
+<nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#wrf-model-installation" id="id1">WRF Model Installation</a></p>
-<ul>
-<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#script-overview" id="id3">Script Overview</a></p></li>
-<li><p><a class="reference internal" href="#shebang-line" id="id4">Shebang Line</a></p></li>
-<li><p><a class="reference internal" href="#set-wrf-version-and-type" id="id5">Set WRF Version and Type</a></p></li>
-<li><p><a class="reference internal" href="#system-checks" id="id6">System Checks</a></p></li>
-<li><p><a class="reference internal" href="#installing-necessary-packages" id="id7">Installing Necessary Packages</a></p></li>
-<li><p><a class="reference internal" href="#set-environment-variables" id="id8">Set Environment Variables</a></p></li>
-<li><p><a class="reference internal" href="#configuring-environment-variables" id="id9">Configuring Environment Variables</a></p></li>
-<li><p><a class="reference internal" href="#installing-jasper-library" id="id10">Installing Jasper Library</a></p></li>
-<li><p><a class="reference internal" href="#installing-wrf" id="id11">Installing WRF</a></p></li>
-<li><p><a class="reference internal" href="#installing-wps-wrf-preprocessing-system" id="id12">Installing WPS (WRF Preprocessing System)</a></p></li>
-<li><p><a class="reference internal" href="#setting-up-geography-data" id="id13">Setting Up Geography Data</a></p></li>
-<li><p><a class="reference internal" href="#prep-chem-src-installation" id="id14">PREP_CHEM_SRC Installation</a></p></li>
-<li><p><a class="reference internal" href="#completion" id="id15">Completion</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference internal" href="#prerequisites" id="id1">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#script-overview" id="id2">Script Overview</a></p></li>
+<li><p><a class="reference internal" href="#shebang-line" id="id3">Shebang Line</a></p></li>
+<li><p><a class="reference internal" href="#set-wrf-version-and-type" id="id4">Set WRF Version and Type</a></p></li>
+<li><p><a class="reference internal" href="#system-checks" id="id5">System Checks</a></p></li>
+<li><p><a class="reference internal" href="#installing-necessary-packages" id="id6">Installing Necessary Packages</a></p></li>
+<li><p><a class="reference internal" href="#set-environment-variables" id="id7">Set Environment Variables</a></p></li>
+<li><p><a class="reference internal" href="#configuring-environment-variables" id="id8">Configuring Environment Variables</a></p></li>
+<li><p><a class="reference internal" href="#installing-jasper-library" id="id9">Installing Jasper Library</a></p></li>
+<li><p><a class="reference internal" href="#installing-wrf" id="id10">Installing WRF</a></p></li>
+<li><p><a class="reference internal" href="#installing-wps-wrf-preprocessing-system" id="id11">Installing WPS (WRF Preprocessing System)</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-geography-data" id="id12">Setting Up Geography Data</a></p></li>
+<li><p><a class="reference internal" href="#prep-chem-src-installation" id="id13">PREP_CHEM_SRC Installation</a></p></li>
+<li><p><a class="reference internal" href="#completion" id="id14">Completion</a></p></li>
 </ul>
 </nav>
 <section id="prerequisites">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">2.1. </span>Prerequisites</a><a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><dl class="simple">
+<h2><span class="section-number">2.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<dl class="simple">
 <dt><strong>System Requirements</strong>:</dt><dd><ul class="simple">
 <li><p>64-bit Linux distribution with apt package manager (Tested on Ubuntu 22.04)</p></li>
 <li><p>Minimum 52 GB disk space</p></li>
@@ -125,22 +105,20 @@
 </ul>
 </dd>
 </dl>
-</li>
-</ol>
 </section>
 <section id="script-overview">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">2.2. </span>Script Overview</a><a class="headerlink" href="#script-overview" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.2. </span>Script Overview<a class="headerlink" href="#script-overview" title="Link to this heading"></a></h2>
 <p>The script simplifies the installation of WRF 4.6.0 by handling directory setup, dependency installation, and compilation. It is intended for users with sufficient permissions to install packages and assumes a Debian-based system with <cite>apt</cite> package management. The installation can take several hours and requires approximately 52 GB of storage.</p>
 </section>
 <section id="shebang-line">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">2.3. </span>Shebang Line</a><a class="headerlink" href="#shebang-line" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.3. </span>Shebang Line<a class="headerlink" href="#shebang-line" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 </pre></div>
 </div>
 <p><strong>Explanation</strong>: This line specifies that the script should be executed using the Bash shell, ensuring compatibility with Bash syntax and commands.</p>
 </section>
 <section id="set-wrf-version-and-type">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">2.4. </span>Set WRF Version and Type</a><a class="headerlink" href="#set-wrf-version-and-type" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.4. </span>Set WRF Version and Type<a class="headerlink" href="#set-wrf-version-and-type" title="Link to this heading"></a></h2>
 <p>The script begins by defining the WRF version and the type of model to be installed. The user can specify the type of WRF model (ARW, Chem, or Hydro) as a command-line argument. If no argument is provided, it defaults to WRF-ARW. The version of the model is set to 4.6.0.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WRFversion</span><span class="o">=</span><span class="s2">&quot;4.6.0&quot;</span>
 <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;ARW&quot;</span>
@@ -178,7 +156,7 @@
 </div></blockquote>
 </section>
 <section id="system-checks">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">2.5. </span>System Checks</a><a class="headerlink" href="#system-checks" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.5. </span>System Checks<a class="headerlink" href="#system-checks" title="Link to this heading"></a></h2>
 <p>The script performs system checks to ensure compatibility.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EUID</span><span class="s2">&quot;</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
 <span class="w">  </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Running this script as root or sudo, is not suggested&quot;</span>
@@ -238,7 +216,7 @@
 </dl>
 </section>
 <section id="installing-necessary-packages">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">2.6. </span>Installing Necessary Packages</a><a class="headerlink" href="#installing-necessary-packages" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.6. </span>Installing Necessary Packages<a class="headerlink" href="#installing-necessary-packages" title="Link to this heading"></a></h2>
 <p>The script installs necessary packages based on the selected WRF type.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$type</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chem&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="nv">extra_packages</span><span class="o">=</span><span class="s2">&quot;flex bison&quot;</span>
@@ -290,7 +268,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </dl>
 </section>
 <section id="set-environment-variables">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.7. </span>Set Environment Variables</a><a class="headerlink" href="#set-environment-variables" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.7. </span>Set Environment Variables<a class="headerlink" href="#set-environment-variables" title="Link to this heading"></a></h2>
 <p>The script sets environment variables required for the installation.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
 mkdir<span class="w"> </span>Build_WRF
@@ -308,7 +286,7 @@ mkdir<span class="w"> </span>LIBRARIES
 </div></blockquote>
 </section>
 <section id="configuring-environment-variables">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.8. </span>Configuring Environment Variables</a><a class="headerlink" href="#configuring-environment-variables" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.8. </span>Configuring Environment Variables<a class="headerlink" href="#configuring-environment-variables" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 <span class="nv">bashrc_exports</span><span class="o">=(</span><span class="s2">&quot;#WRF Variables&quot;</span><span class="w"> </span><span class="s2">&quot;export DIR=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;export CC=gcc&quot;</span><span class="w"> </span><span class="s2">&quot;export CXX=g++&quot;</span><span class="w"> </span><span class="s2">&quot;export FC=gfortran&quot;</span><span class="w"> </span><span class="s2">&quot;export FCFLAGS=-m64&quot;</span><span class="w"> </span><span class="s2">&quot;export F77=gfortran&quot;</span><span class="w"> </span><span class="s2">&quot;export FFLAGS=-m64&quot;</span>
 <span class="w">                </span><span class="s2">&quot;export NETCDF=/usr&quot;</span><span class="w"> </span><span class="s2">&quot;export HDF5=/usr/lib/x86_64-linux-gnu/hdf5/serial&quot;</span><span class="w"> </span><span class="s2">&quot;export LDFLAGS=&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;-L/usr/lib/x86_64-linux-gnu/hdf5/serial/ -L/usr/lib&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;&quot;</span>
@@ -330,12 +308,13 @@ mkdir<span class="w"> </span>LIBRARIES
 <span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib
 </pre></div>
 </div>
-<ul>
-<li><p><strong>Explanation</strong>:
-- Adds a blank line to <cite>~/.bashrc</cite> for readability.
-- Defines an array of environment variables (e.g., compilers, library paths) for WRF.
-- Appends these to <cite>~/.bashrc</cite> if not already present.
-- Sets the same variables in the current session for immediate use.</p>
+<dl>
+<dt><strong>Explanation</strong>:</dt><dd><ul class="simple">
+<li><p>Adds a blank line to <cite>~/.bashrc</cite> for readability.</p></li>
+<li><p>Defines an array of environment variables (e.g., compilers, library paths) for WRF.</p></li>
+<li><p>Appends these to <cite>~/.bashrc</cite> if not already present.</p></li>
+<li><p>Sets the same variables in the current session for immediate use.</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$type</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chem&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="k">$(</span>grep<span class="w"> </span><span class="s2">&quot;export FLEX_LIB_DIR=/usr/lib/x86_64-linux-gnu&quot;</span><span class="w"> </span>~/.bashrc<span class="k">)</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export FLEX_LIB_DIR=/usr/lib/x86_64-linux-gnu&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 <span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="k">$(</span>grep<span class="w"> </span><span class="s2">&quot;export YACC=&#39;yacc -d&#39;&quot;</span><span class="w"> </span>~/.bashrc<span class="k">)</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export YACC=&#39;yacc -d&#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
@@ -344,9 +323,7 @@ mkdir<span class="w"> </span>LIBRARIES
 <span class="k">fi</span>
 </pre></div>
 </div>
-</li>
-</ul>
-<dl class="simple">
+</dd>
 <dt><strong>Explanation</strong>:</dt><dd><ul class="simple">
 <li><p>For WRF-Chem, adds <cite>FLEX_LIB_DIR</cite> and <cite>YACC</cite> (for <cite>bison</cite>) to <cite>~/.bashrc</cite> and sets them in the current session.</p></li>
 </ul>
@@ -354,7 +331,7 @@ mkdir<span class="w"> </span>LIBRARIES
 </dl>
 </section>
 <section id="installing-jasper-library">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">2.9. </span>Installing Jasper Library</a><a class="headerlink" href="#installing-jasper-library" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.9. </span>Installing Jasper Library<a class="headerlink" href="#installing-jasper-library" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;jasper-1.900.1&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>jasper-1.900.1<span class="w"> </span>jasper-1.900.1-old
 <span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;jasper-1.900.1.tar.gz&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>jasper-1.900.1.tar.gz<span class="w"> </span>jasper-1.900.1.tar.gz-old
 wget<span class="w"> </span>https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz<span class="w"> </span>-O<span class="w"> </span>jasper-1.900.1.tar.gz
@@ -381,7 +358,7 @@ make<span class="w"> </span>install
 </dl>
 </section>
 <section id="installing-wrf">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">2.10. </span>Installing WRF</a><a class="headerlink" href="#installing-wrf" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.10. </span>Installing WRF<a class="headerlink" href="#installing-wrf" title="Link to this heading"></a></h2>
 <p>The script downloads and installs the WRF model.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>..
 <span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;WRFV</span><span class="si">${</span><span class="nv">WRFversion</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>WRFV<span class="si">${</span><span class="nv">WRFversion</span><span class="si">}</span><span class="w"> </span>WRFV<span class="si">${</span><span class="nv">WRFversion</span><span class="si">}</span>-old
@@ -407,10 +384,12 @@ rm<span class="w"> </span>-r<span class="w"> </span>wrf_hydro_nwm_public-5.3.0
 <span class="k">fi</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Explanation</strong>:
-- For WRF-Hydro, enables <cite>WRF_HYDRO</cite>, downloads WRF-Hydro 5.3.0, and integrates it into the WRF hydro directory.</p></li>
+<dl class="simple">
+<dt><strong>Explanation</strong>:</dt><dd><ul class="simple">
+<li><p>For WRF-Hydro, enables <cite>WRF_HYDRO</cite>, downloads WRF-Hydro 5.3.0, and integrates it into the WRF hydro directory.</p></li>
 </ul>
+</dd>
+</dl>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>WRFV<span class="si">${</span><span class="nv">WRFversion</span><span class="si">}</span>
 <span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$type</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chem&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">WRF_CHEM</span><span class="o">=</span><span class="m">1</span>
@@ -467,7 +446,7 @@ mv<span class="w"> </span>WRFV<span class="si">${</span><span class="nv">WRFvers
 </dl>
 </section>
 <section id="installing-wps-wrf-preprocessing-system">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">2.11. </span>Installing WPS (WRF Preprocessing System)</a><a class="headerlink" href="#installing-wps-wrf-preprocessing-system" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.11. </span>Installing WPS (WRF Preprocessing System)<a class="headerlink" href="#installing-wps-wrf-preprocessing-system" title="Link to this heading"></a></h2>
 <p>The script downloads and installs the WPS (WRF Preprocessing System).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WPSversion</span><span class="o">=</span><span class="s2">&quot;4.6.0&quot;</span>
 <span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;WPS-</span><span class="si">${</span><span class="nv">WPSversion</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>WPS-<span class="si">${</span><span class="nv">WPSversion</span><span class="si">}</span><span class="w"> </span>WPS-<span class="si">${</span><span class="nv">WPSversion</span><span class="si">}</span>-old
@@ -484,14 +463,16 @@ sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s# g
 <span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Explanation</strong>:
-- Downloads and extracts WPS 4.6.0.
-- Cleans previous builds, adjusts NETCDF and WRF directory settings, configures with option 3 (serial), compiles, and sets the geography path.</p></li>
+<dl class="simple">
+<dt><strong>Explanation</strong>:</dt><dd><ul class="simple">
+<li><p>Downloads and extracts WPS 4.6.0.</p></li>
+<li><p>Cleans previous builds, adjusts NETCDF and WRF directory settings, configures with option 3 (serial), compiles, and sets the geography path.</p></li>
 </ul>
+</dd>
+</dl>
 </section>
 <section id="setting-up-geography-data">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.12. </span>Setting Up Geography Data</a><a class="headerlink" href="#setting-up-geography-data" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.12. </span>Setting Up Geography Data<a class="headerlink" href="#setting-up-geography-data" title="Link to this heading"></a></h2>
 <p>The script downloads and extracts geographical data files required for WPS.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;WPS_GEOG&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;WRF and WPS are installed successfully&quot;</span>
@@ -532,13 +513,15 @@ tar<span class="w"> </span>-zxvf<span class="w"> </span>geog_high_res_mandatory.
 <span class="k">fi</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>Explanation</strong>:
-- For WRF-Chem, downloads and extracts additional chemistry-related geography datasets.</p></li>
+<dl class="simple">
+<dt><strong>Explanation</strong>:</dt><dd><ul class="simple">
+<li><p>For WRF-Chem, downloads and extracts additional chemistry-related geography datasets.</p></li>
 </ul>
+</dd>
+</dl>
 </section>
 <section id="prep-chem-src-installation">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">2.13. </span>PREP_CHEM_SRC Installation</a><a class="headerlink" href="#prep-chem-src-installation" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.13. </span>PREP_CHEM_SRC Installation<a class="headerlink" href="#prep-chem-src-installation" title="Link to this heading"></a></h2>
 <p>The script optionally installs the PREP_CHEM_SRC program for WRF-Chem.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$type</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Chem&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Do you want the PREP-CHEM-SRC program to be installed? PREP-CHEM-SRC is a widely used emission preparation program for WRF-Chem.&quot;</span>
@@ -593,7 +576,7 @@ tar<span class="w"> </span>-zxvf<span class="w"> </span>geog_high_res_mandatory.
 </dl>
 </section>
 <section id="completion">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">2.14. </span>Completion</a><a class="headerlink" href="#completion" title="Link to this heading"></a></h2>
+<h2><span class="section-number">2.14. </span>Completion<a class="headerlink" href="#completion" title="Link to this heading"></a></h2>
 <p>The script completes the installation and exits.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Installation has completed&quot;</span>
 <span class="nb">exec</span><span class="w"> </span>bash

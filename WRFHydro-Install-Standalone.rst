@@ -2,8 +2,19 @@
 WRF-Hydro Standalone Installation
 =================================
 
+.. raw:: html
+    
+    <div style="text-align: justify;">
+    
+    <p> Welcome to the WRF-Hydro Standalone Installation Guide! This document provides a comprehensive step-by-step guide for downloading, compiling, and installing the WRF-Hydro model (version 5.2.0) in standalone mode. WRF-Hydro is a powerful hydrological modeling system that integrates atmospheric and hydrological processes to simulate and predict water cycle components such as precipitation, runoff, and streamflow. This guide is designed to help users set up WRF-Hydro for research, operational forecasting, and water resource management. </p>
+
+    </div>
+
+
 .. contents:: On This Page
    :depth: 4
+
+
 
 Introduction
 ------------
