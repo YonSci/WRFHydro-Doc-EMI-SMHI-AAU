@@ -9,12 +9,12 @@ This document provides a detailed and indepth explanation of a Bash script desig
 Prerequisites
 -------------
 
-1. **System Requirements**:
-   - 64-bit Linux distribution with apt package manager (Tested on Ubuntu 22.04)
-   - Minimum 52 GB disk space
-   - Non-root user with sudo privileges
-   - 64-bit architecture (x86_64)
-   - Apt package manager availability
+**System Requirements**:
+    - 64-bit Linux distribution with apt package manager (Tested on Ubuntu 22.04)
+    - Minimum 52 GB disk space
+    - Non-root user with sudo privileges
+    - 64-bit architecture (x86_64)
+    - Apt package manager availability
 
 
 Script Overview
@@ -226,7 +226,7 @@ Configuring Environment Variables
    export CPPFLAGS="-I/usr/include/hdf5/serial/ -I/usr/include"
    export LD_LIBRARY_PATH=/usr/lib
 
-- **Explanation**:
+**Explanation**:
   - Adds a blank line to `~/.bashrc` for readability.
   - Defines an array of environment variables (e.g., compilers, library paths) for WRF.
   - Appends these to `~/.bashrc` if not already present.
@@ -301,7 +301,7 @@ The script downloads and installs the WRF model.
    rm -r wrf_hydro_nwm_public-5.3.0
    fi
 
-- **Explanation**:
+**Explanation**:
   - For WRF-Hydro, enables `WRF_HYDRO`, downloads WRF-Hydro 5.3.0, and integrates it into the WRF hydro directory.
 
 
@@ -377,7 +377,7 @@ The script downloads and installs the WPS (WRF Preprocessing System).
    sed -i "s# geog_data_path.*# geog_data_path = '../WPS_GEOG/'#" namelist.wps
    cd ..
 
-- **Explanation**:
+**Explanation**:
   - Downloads and extracts WPS 4.6.0.
   - Cleans previous builds, adjusts NETCDF and WRF directory settings, configures with option 3 (serial), compiles, and sets the geography path.
 
@@ -426,7 +426,7 @@ The script downloads and extracts geographical data files required for WPS.
     cd ..
    fi
 
-- **Explanation**:
+**Explanation**:
   - For WRF-Chem, downloads and extracts additional chemistry-related geography datasets.
 
 
@@ -498,5 +498,3 @@ The script completes the installation and exits.
 
 **Explanation**:
   - Confirms completion, starts a new Bash session to apply environment changes, and exits.
-
----
